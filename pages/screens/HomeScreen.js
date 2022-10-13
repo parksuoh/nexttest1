@@ -28,7 +28,11 @@ const HomeScreen = () => {
       <div className='flex flex-col w-full min-h-screen'>
         <TopHeader info={info} setInfo={setInfo} />
         <div>홈</div>
-        <div>{info && info.email}</div>
+        <div>유저번호: {info && info.uid}</div>
+        <div>이메일: {info && info.email}</div>
+        <div>닉네임: {info && info.nick}</div>
+        <div>이름: {info && info.name}</div>
+        <div>레벨: {info && info.level}</div>
       </div>
   )
 }

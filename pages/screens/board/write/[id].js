@@ -31,8 +31,12 @@ const write = () => {
     const videoRef = useRef();
 
     useEffect(() => {
-      console.log(contextSel)
-    }, [contextSel])
+      console.log(photo)
+    }, [photo])
+
+    useEffect(() => {
+      console.log(video)
+    }, [video])
 
     const onSubmit = async() => {
       let formData = new FormData()

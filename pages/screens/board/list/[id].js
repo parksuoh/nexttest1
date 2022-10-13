@@ -52,9 +52,12 @@ const list = () => {
     <div className='flex flex-col w-full min-h-screen'>
         <TopHeader info={info} setInfo={setInfo} />
         list {id}
-        <Link href={`/screens/board/write/${id}/`}>
+        {info && (
+          <Link href={`/screens/board/write/${id}/`}>
             <a>글쓰기 이동</a>
-        </Link>
+          </Link>
+        )}
+
         {list.length > 0 && list.map((itm, idx) => (
           <div
             key={idx}

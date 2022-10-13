@@ -6,6 +6,8 @@ import { useRouter } from 'next/router';
 import AutoSizeText from '../../../../components/AutoSizeText';
 import ReactPlayer from 'react-player';
 import { TwitterTweetEmbed } from 'react-twitter-embed';
+import Like from '../../../../components/Like';
+import Comments from '../../../../components/Comments';
 
 const read = () => {
     const router = useRouter();
@@ -15,6 +17,8 @@ const read = () => {
     const [title, setTitle] = useState('')
 
     const [menuId, setMenuId] = useState(0)
+
+    const [uid, setUid] = useState('')
     
     const [text, setText] = useState([''])
     const [photo, setPhoto] = useState([])
@@ -50,6 +54,8 @@ const read = () => {
         setYoutube(res.data.boardCont.youtube)
         setTwitter(res.data.boardCont.twitter)
 
+        setUid(res.data.uid)
+
         setMenuId(res.data.menuCd)
     
         } catch (e) {
@@ -69,15 +75,19 @@ const read = () => {
     <div className='flex flex-col w-full min-h-screen'>
         <TopHeader info={info} setInfo={setInfo} />
         글 읽기 {id}
-        <div
-            onClick={() => router.push(`/screens/board/update/${id}/`)}
-        >
-            글수정
-        </div>
+
+        {(info && uid === info.uid) && (
+            <div
+                onClick={() => router.push(`/screens/board/update/${id}/`)}
+            >
+                글수정
+            </div>
+        )}
+
 
         <div>{title}</div>
         {text.map((itm, idx) => (
-            <Fragment
+            <div
                 key={idx}
             >
             <AutoSizeText 
@@ -113,8 +123,21 @@ const read = () => {
                     tweetId={twitter[idx]}
                 />
             )}
-            </Fragment>
+            </div>
         ))}
+        {id  && (
+            <Like
+                id={id}
+                info={info}
+            />
+        )}
+
+        <Comments
+            id={id}
+            info={info}
+        />
+
+
     </div>
   )
 }
