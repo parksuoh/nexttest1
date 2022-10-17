@@ -1,5 +1,5 @@
 import TopHeader from '../../../../components/TopHeader'
-import { Fragment, useEffect, useRef, useState } from "react"
+import { Fragment, useCallback, useEffect, useRef, useState } from "react"
 import axios from 'axios'
 import ReactPlayer from 'react-player/youtube'
 import { TwitterTweetEmbed } from 'react-twitter-embed';
@@ -29,14 +29,6 @@ const write = () => {
 
     const photoRef = useRef();
     const videoRef = useRef();
-
-    useEffect(() => {
-      console.log(photo)
-    }, [photo])
-
-    useEffect(() => {
-      console.log(video)
-    }, [video])
 
     const onSubmit = async() => {
       let formData = new FormData()
@@ -105,7 +97,7 @@ const write = () => {
     }
 
 
-    const getAuth = async() => {
+    const getAuth = useCallback(async() => {
       try {
         const res = await axios.get('http://localhost:4000/api/user/auth/', { withCredentials: true })
   
@@ -117,7 +109,7 @@ const write = () => {
       } catch (e) {
         console.log(e)
       }      
-    };
+    }, [])
     
     useEffect(() => {
       getAuth()
@@ -349,9 +341,14 @@ const write = () => {
                 <AutoSizeText 
                   value={itm}
                   onChange={(e) => {
-                    let arr = [...text]
-                    arr[idx] = e.target.value
-                    setText(arr)
+                    const input = e.target.value;
+                    setText((prevArr) => {
+                      return [
+                        ...prevArr.slice(0, idx),
+                        input,
+                        ...prevArr.slice(idx + 1, prevArr.length)
+                      ]
+                    })
                   }}
                   onKeyDown={(e) => onContextKey(e, idx)}
                   readOnly={false}

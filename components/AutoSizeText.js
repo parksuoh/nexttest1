@@ -1,12 +1,12 @@
-import React, { useEffect, useRef } from 'react'
+import React, { memo, useCallback, useEffect, useRef } from 'react'
 
-const AutoSizeText = ({value, onChange, onKeyDown, readOnly}) => {
+const AutoSizeText = memo(({value, onChange, onKeyDown, readOnly}) => {
     const textAreaRef = useRef(null);
 
-    const resizeTextArea = () => {
+    const resizeTextArea = useCallback(() => {
         textAreaRef.current.style.height = "auto";
         textAreaRef.current.style.height = textAreaRef.current.scrollHeight + "px";
-    };
+    }, [textAreaRef.current?.style.height])
 
     useEffect(resizeTextArea, [value]);
 
@@ -21,6 +21,6 @@ const AutoSizeText = ({value, onChange, onKeyDown, readOnly}) => {
             readOnly={readOnly}
         />
     );
-}
+})
 
 export default AutoSizeText

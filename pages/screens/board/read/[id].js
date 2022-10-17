@@ -1,5 +1,5 @@
 import TopHeader from '../../../../components/TopHeader'
-import { Fragment, useEffect, useState } from "react"
+import { Fragment, useCallback, useEffect, useState } from "react"
 import axios from 'axios'
 import Link from "next/link";
 import { useRouter } from 'next/router';
@@ -26,7 +26,7 @@ const read = () => {
     const [youtube, setYoutube] = useState([])
     const [twitter, setTwitter] = useState([])
 
-    const getAuth = async() => {
+    const getAuth = useCallback(async() => {
         try {
           const res = await axios.get('http://localhost:4000/api/user/auth/', { withCredentials: true })
     
@@ -38,7 +38,7 @@ const read = () => {
         } catch (e) {
           console.log(e)
         }      
-    };
+    }, [])
 
     const getBoard = async() => {
         try {

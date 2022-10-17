@@ -1,13 +1,13 @@
 import Link from "next/link";
 import { useRouter } from "next/router"
 import axios from 'axios'
-import { useEffect, useState } from "react";
+import { memo, useCallback, useEffect, useState } from "react";
 
-const TopHeader = ({info, setInfo}) => {
+const TopHeader = memo(({info, setInfo}) => {
   const [lists, setLists] = useState([])
   const router = useRouter()
 
-  const getMenu = async() => {
+  const getMenu = useCallback(async() => {
     try {
       const res = await axios.get('http://localhost:4000/api/board/get-board-menu/')
 
@@ -19,18 +19,18 @@ const TopHeader = ({info, setInfo}) => {
     } catch (e) {
       console.log(e)
     }      
-  };
+  }, [])
 
   useEffect(() => {
     getMenu()
   }, [])
 
-  const onLogout = () => {
+  const onLogout = useCallback(() => {
     setInfo()
     document.cookie = 'accessToken' + '=; expires=Thu, 01 Jan 1999 00:00:10 GMT;';
     document.cookie = 'refreshToken' + '=; expires=Thu, 01 Jan 1999 00:00:10 GMT;';
     router.push('/screens/user/login')
-  }
+  }, [])
 
   return (
     <div className='flex flex-row items-center justify-between px-20 w-full h-24 bg-slate-50'>
@@ -59,6 +59,6 @@ const TopHeader = ({info, setInfo}) => {
 
     </div>
   )
-}
+})
 
 export default TopHeader

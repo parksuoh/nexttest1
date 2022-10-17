@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { memo, useCallback, useEffect, useState } from "react";
 
 
 const Comments = ({id, info}) => {
@@ -10,7 +10,7 @@ const Comments = ({id, info}) => {
     const [cocmtText, setCocmtText] = useState('')
     const [cocmtTextSel, setCocmtTextSel] = useState(-1)
 
-    const getComments = async() => {
+    const getComments = useCallback(async() => {
         try {
             const res = await axios.post('http://localhost:4000/api/board/get-comments/', {id})
 
@@ -40,7 +40,7 @@ const Comments = ({id, info}) => {
             } catch (e) {
               console.log(e)
             }   
-    }
+    }, [id])
 
     useEffect(() => {
         if(id){
@@ -100,7 +100,7 @@ const Comments = ({id, info}) => {
 }
 
 
-const Cmt = ({itm, child, cocmtText, setCocmtText, cocmtTextSel, setCocmtTextSel, writeComment}) => {
+const Cmt = memo(({itm, child, cocmtText, setCocmtText, cocmtTextSel, setCocmtTextSel, writeComment}) => {
     return (
       <div>
         <h3
@@ -135,9 +135,9 @@ const Cmt = ({itm, child, cocmtText, setCocmtText, cocmtTextSel, setCocmtTextSel
 
       </div>
     )
-}
+})
 
-const Cocomt = ({item, setCocmtTextSel}) => {
+const Cocomt = memo(({item, setCocmtTextSel}) => {
     return (
       <div>
         <h3
@@ -149,6 +149,6 @@ const Cocomt = ({item, setCocmtTextSel}) => {
         <h4>아이디 : {item['UID']}</h4>
       </div>
     )
-}
+})
 
 export default Comments

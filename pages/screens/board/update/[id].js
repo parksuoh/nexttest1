@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import { Fragment, useEffect, useRef, useState } from 'react'
+import { Fragment, useCallback, useEffect, useRef, useState } from 'react'
 import ReactPlayer from 'react-player';
 import { TwitterTweetEmbed } from 'react-twitter-embed';
 import AutoSizeText from '../../../../components/AutoSizeText';
@@ -119,7 +119,7 @@ const update = () => {
     }
 
 
-    const getAuth = async() => {
+    const getAuth = useCallback(async() => {
         try {
           const res = await axios.get('http://localhost:4000/api/user/auth/', { withCredentials: true })
     
@@ -131,9 +131,9 @@ const update = () => {
         } catch (e) {
           console.log(e)
         }      
-    };
+    }, [])
 
-    const getBoard = async() => {
+    const getBoard = useCallback(async() => {
         try {
         const res = await axios.post('http://localhost:4000/api/board/get-update-board/', {id})
 
@@ -158,7 +158,7 @@ const update = () => {
         } catch (e) {
           console.log(e)
         }      
-    };
+    }, [id])
 
     useEffect(() => {
         getAuth()
