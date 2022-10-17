@@ -1,6 +1,8 @@
 import TopHeader from '../../components/TopHeader'
 import { useEffect, useState } from "react"
 import axios from 'axios'
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const HomeScreen = () => {
   const [info, setInfo] = useState()
@@ -33,6 +35,19 @@ const HomeScreen = () => {
         <div>닉네임: {info && info.nick}</div>
         <div>이름: {info && info.name}</div>
         <div>레벨: {info && info.level}</div>
+        {/* <div className='w-28 h-28'>
+          <Skeleton
+              circle
+              height="100%"
+              containerClassName="avatar-skeleton"
+          />
+        </div>
+        <div className='w-28 h-10'>
+          <Skeleton width={110} height={30} /> 
+        </div>
+        <div className='w-28 h-20'>
+          <Skeleton count={3} /> 
+        </div> */}
       </div>
   )
 }

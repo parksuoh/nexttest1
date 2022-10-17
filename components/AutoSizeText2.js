@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useEffect, useRef } from 'react'
 
-const AutoSizeText = memo(({value, onChange, onKeyDown, readOnly}) => {
+const AutoSizeText2 = memo(({value, onChange, onKeyDown, readOnly}) => {
     const textAreaRef = useRef(null);
 
     const resizeTextArea = useCallback(() => {
@@ -12,15 +12,16 @@ const AutoSizeText = memo(({value, onChange, onKeyDown, readOnly}) => {
 
     return (
         <textarea
-            className='p-0.5 resize-none overflow-y-hidden border border-indigo-600  w-full'
+            className='p-0.5 resize-none overflow-y-hidden border-0 w-full'
             ref={textAreaRef}
             value={value}
             onChange={onChange} 
             onKeyDown={onKeyDown}
             rows={1}
             readOnly={readOnly}
+            disabled
         />
     );
 })
 
-export default AutoSizeText
+export default AutoSizeText2

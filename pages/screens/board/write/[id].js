@@ -354,11 +354,11 @@ const write = () => {
                   readOnly={false}
                 />
                 {photo[idx] && photo[idx] !== '0' && (
-                  <img className='w-48' src={photo[idx]} alt="preview-img" />
+                  <img className='w-full'  src={photo[idx]} alt="preview-img" />
                 )}
                 {video[idx] && video[idx] !== '0' && (
                   <video
-                    className='w-48'
+                    className='w-full' 
                     width="100%"
                     controls
                     src={video[idx]}
@@ -368,10 +368,12 @@ const write = () => {
                   <ReactPlayer
                     url={youtube[idx]}
                     controls={true}
+                    width="100%" 
                   />
                 )}
                 {twitter[idx] && twitter[idx] !== '0' && (
                   <TwitterTweetEmbed
+                    className='w-full' 
                     optins={{width: "900px"}} 
                     tweetId={twitter[idx]}
                   />
@@ -382,6 +384,7 @@ const write = () => {
 
         <button
           onClick={() => onSubmit()}
+          className="border border-indigo-600 rounded"
         >
           게시하기
         </button>

@@ -8,6 +8,7 @@ import ReactPlayer from 'react-player';
 import { TwitterTweetEmbed } from 'react-twitter-embed';
 import Like from '../../../../components/Like';
 import Comments from '../../../../components/Comments';
+import AutoSizeText2 from '../../../../components/AutoSizeText2';
 
 const read = () => {
     const router = useRouter();
@@ -73,7 +74,10 @@ const read = () => {
 
   return (
     <div className='flex flex-col w-full min-h-screen'>
-        <TopHeader info={info} setInfo={setInfo} />
+        <TopHeader 
+            info={info} 
+            setInfo={setInfo} 
+        />
         글 읽기 {id}
 
         {(info && uid === info.uid) && (
@@ -90,7 +94,7 @@ const read = () => {
             <div
                 key={idx}
             >
-            <AutoSizeText 
+            <AutoSizeText2 
                 value={itm}
                 onChange={(e) => {
                 let arr = [...text]
@@ -101,11 +105,15 @@ const read = () => {
                 readOnly={true}
             />
             {photo[idx] && photo[idx] !== '0' && (
-                <img className='w-48' src={`http://localhost:4000/uploads/${menuId}/${photo[idx]}`} alt="preview-img" />
+                <img 
+                    className='w-full' 
+                    src={`http://localhost:4000/uploads/${menuId}/${photo[idx]}`} 
+                    alt="preview-img" 
+                />
             )}
             {video[idx] && video[idx] !== '0' && (
                 <video
-                    className='w-48'
+                    className='w-full'
                     width="100%"
                     controls
                     src={`http://localhost:4000/uploads/${menuId}/${video[idx]}`}
@@ -113,12 +121,14 @@ const read = () => {
             )}
             {youtube[idx] && youtube[idx] !== '0' && (
                 <ReactPlayer
+                    className='w-full'
                     url={youtube[idx]}
                     controls={true}
                 />
             )}
             {twitter[idx] && twitter[idx] !== '0' && (
                 <TwitterTweetEmbed
+                    className='w-full'
                     optins={{width: "900px"}} 
                     tweetId={twitter[idx]}
                 />

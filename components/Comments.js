@@ -70,7 +70,9 @@ const Comments = ({id, info}) => {
 
 
   return (
-    <div>
+    <div
+      className="flex flex-col"
+    >
         댓글컴포넌트
       {cmtList && cmtList.map((itm, idx) => (
           <Cmt
@@ -92,6 +94,7 @@ const Comments = ({id, info}) => {
       />
       <button
         onClick={() => writeComment(cmtText, 0)}
+        className="border border-indigo-600 rounded"
       >
         댓글입력
       </button>
@@ -102,7 +105,9 @@ const Comments = ({id, info}) => {
 
 const Cmt = memo(({itm, child, cocmtText, setCocmtText, cocmtTextSel, setCocmtTextSel, writeComment}) => {
     return (
-      <div>
+      <div
+        className="flex flex-col border border-indigo-600"
+      >
         <h3
           onClick={() => setCocmtTextSel(itm['COMT_CD'])}
         >
@@ -127,6 +132,7 @@ const Cmt = memo(({itm, child, cocmtText, setCocmtText, cocmtTextSel, setCocmtTe
           />
           <button
             onClick={() => writeComment(cocmtText, itm['COMT_CD'])}
+            className="border border-indigo-600 rounded"
           >
             대댓글입력
           </button>

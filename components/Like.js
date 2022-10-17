@@ -86,13 +86,16 @@ const Like = ({id, info}) => {
 
 
   return (
-    <div>
+    <div
+        className="border border-indigo-600 flex justify-around"
+    >
         <div
             onClick={() => {
                 if(info) {
                     toggleLike()
                 }
             }}
+            className="border border-slate-500"
         >
             <button>
                 {likeInclude ? '좋아요 ㅇㅇ' : '좋아요 ㄴㄴ'}
@@ -105,6 +108,7 @@ const Like = ({id, info}) => {
                     toggleDisLike()
                 }
             }}
+            className="border border-slate-500"
         >
             <button>
                 {disLikeInclude ? '싫어요 ㅇㅇ' : '싫어요 ㄴㄴ'}
