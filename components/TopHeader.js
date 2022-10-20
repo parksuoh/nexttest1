@@ -5,7 +5,6 @@ import { memo, useCallback, useEffect, useState } from "react";
 
 const TopHeader = memo(({info, setInfo}) => {
   const [lists, setLists] = useState([])
-  const [buger, setBuger] = useState(false)
   const router = useRouter()
 
   const getMenu = useCallback(async() => {
@@ -35,18 +34,7 @@ const TopHeader = memo(({info, setInfo}) => {
 
   return (
     <div className='flex flex-row items-center justify-between px-20 w-full h-12 bg-slate-50 relative'>
-        <div
-          onClick={() => setBuger(!buger)}
-        >
-          햄버거
-        </div>
-        <div
-          onClick={() => setBuger(!buger)}
-        >
-          햄버거
-        </div>
         
-        <div className={`absolute top-0 left-${buger ? '0':'[-240px]'} w-60 h-screen bg-slate-300 ease-in duration-300 z-50`}>
           <Link href="/">
               <a>로고</a>
           </Link>
@@ -58,6 +46,9 @@ const TopHeader = memo(({info, setInfo}) => {
               {itm['MENU_TITLE']}
             </div>
           ))}
+          <Link href="/screens/ScrollTest">
+            <a>스크롤</a>
+          </Link>
           {!info ? (
             <Link href="/screens/user/login">
               <a>로그인</a>
@@ -69,7 +60,6 @@ const TopHeader = memo(({info, setInfo}) => {
               로그아웃
             </div>
           )}
-        </div>
        
 
     </div>
