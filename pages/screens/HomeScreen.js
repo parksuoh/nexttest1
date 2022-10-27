@@ -3,8 +3,12 @@ import { useEffect, useState } from "react"
 import axios from 'axios'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+import useBearStore from '../../zustand/state'
 
 const HomeScreen = () => {
+  const bears = useBearStore((state) => state.bears)
+  const increasePopulation = useBearStore((state) => state.increasePopulation)
+  const removeAllBears = useBearStore((state) => state.removeAllBears)
   const [info, setInfo] = useState()
 
   const getAuth = async() => {
@@ -35,7 +39,17 @@ const HomeScreen = () => {
         <div>닉네임: {info && info.nick}</div>
         <div>이름: {info && info.name}</div>
         <div>레벨: {info && info.level}</div>
-        {/* <div className='w-28 h-28'>
+        <div
+          onClick={increasePopulation}
+        >
+          zustand state {bears} 
+        </div>
+        <div
+          onClick={removeAllBears}
+        >
+          clear
+        </div>
+        <div className='w-28 h-28'>
           <Skeleton
               circle
               height="100%"
@@ -47,7 +61,7 @@ const HomeScreen = () => {
         </div>
         <div className='w-28 h-20'>
           <Skeleton count={3} /> 
-        </div> */}
+        </div>
       </div>
   )
 }

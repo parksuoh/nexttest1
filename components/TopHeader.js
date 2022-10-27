@@ -49,6 +49,9 @@ const TopHeader = memo(({info, setInfo}) => {
           <Link href="/screens/ScrollTest">
             <a>스크롤</a>
           </Link>
+          <Link href="/screens/QuillTest">
+            <a>Quill</a>
+          </Link>
           {!info ? (
             <Link href="/screens/user/login">
               <a>로그인</a>
