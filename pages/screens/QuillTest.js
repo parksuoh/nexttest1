@@ -150,6 +150,10 @@ const QuillTest = () => {
         />
         {/* <div dangerouslySetInnerHTML={{ __html: value }} /> */}
 
+        <textarea
+          value={value}
+        />
+
         <MantineWrapper readOnly id="rte" value={value}  />
 
         {/* <MantineWrapper 
