@@ -28,7 +28,7 @@ const ChatTest = () => {
     
     const [info, setInfo] = useState()
     const [text, setText] = useState('')
-    const [lists, setLists] = useState(['test1'])
+    const [lists, setLists] = useState([])
 
 
     useEffect(() => {
@@ -48,9 +48,19 @@ const ChatTest = () => {
         setText('')
     }
 
-    useEffect(() => {console.log(lists)}, [lists])
+    
+    const getChats = async() => {
+        try {
+          const res = await axios.get('http://localhost:4000/api/chat/get-cont/')
 
-
+          
+          let list1 = res.data.lists.reduce((res, item) => [...res, item['CHAT_TEXT']], [])
+          setLists(list1)
+    
+        } catch (e) {
+          console.log(e)
+        }      
+    };
 
 
     const getAuth = async() => {
@@ -70,6 +80,7 @@ const ChatTest = () => {
 
     useEffect(() => {
         getAuth()
+        getChats()
     }, [])
 
   return (
