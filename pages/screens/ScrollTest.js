@@ -1,8 +1,32 @@
 import {useEffect, useState} from 'react';
+import TopHeader from '../../components/TopHeader';
 
 
 
 const ScrollTest = () => {
+    const [info, setInfo] = useState()
+
+    const getAuth = async() => {
+        try {
+          const res = await axios.get('http://localhost:4000/api/user/auth/', { withCredentials: true })
+    
+          if(res.data.success === false) {
+              return;
+          } 
+          setInfo(res.data)
+    
+        } catch (e) {
+          console.log(e)
+        }      
+    };
+
+
+    useEffect(() => {
+        getAuth()
+    }, [])
+
+
+
     const [windowHeight, setWindowHeight] = useState(0);
     const [yOffset, setYOffset] = useState(0);
     const [currentScene, setCurrentScene] = useState(0);
@@ -76,6 +100,7 @@ const ScrollTest = () => {
 
   return (
     <div>
+        <TopHeader info={info} setInfo={setInfo} />
         {sceneInfo.map((itm, idx) => (
             <div
                 key={idx}

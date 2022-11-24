@@ -61,6 +61,9 @@ const TopHeader = memo(({info, setInfo}) => {
           <Link href="/screens/CustomEditor2">
             <a>에디터2</a>
           </Link>
+          <Link href="/screens/ChatTest">
+            <a>채팅1</a>
+          </Link>
           {!info ? (
             <Link href="/screens/user/login">
               <a>로그인</a>
