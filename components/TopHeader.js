@@ -49,7 +49,7 @@ const TopHeader = memo(({info, setInfo}) => {
           <Link href="/screens/ScrollTest">
             <a>스크롤</a>
           </Link>
-          <Link href="/screens/QuillTest">
+          {/* <Link href="/screens/QuillTest">
             <a>Quill</a>
           </Link>
           <Link href="/screens/QuillTest2">
@@ -57,12 +57,24 @@ const TopHeader = memo(({info, setInfo}) => {
           </Link>
           <Link href="/screens/CustomEditor">
             <a>에디터</a>
-          </Link>
+          </Link> */}
           <Link href="/screens/CustomEditor2">
             <a>에디터2</a>
           </Link>
           <Link href="/screens/ChatTest">
             <a>채팅1</a>
+          </Link>
+          <Link href="/screens/ThreeTest">
+            <a>3D</a>
+          </Link>
+          <Link href="/screens/ThreeTest2">
+            <a>3D2</a>
+          </Link>
+          <Link href="/screens/ThreeTest3">
+            <a>3D3</a>
+          </Link>
+          <Link href="/screens/ThreeTest4">
+            <a>3D4</a>
           </Link>
           {!info ? (
             <Link href="/screens/user/login">
